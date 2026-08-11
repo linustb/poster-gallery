@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#343a30" />
+    <meta name="description" content="北京科技大学满井溯源·秦京铸魂实践队海报资料库" />
+    <meta property="og:title" content="实践海报库｜满井溯源·秦京铸魂" />
+    <meta property="og:description" content="北京科技大学满井溯源·秦京铸魂实践队海报资料库" />
+    <meta property="og:type" content="website" />
+    <title>实践海报库｜满井溯源·秦京铸魂</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#library-content">跳到海报列表</a>
+
+    <header class="site-header" id="top">
+      <a class="wordmark" href="#top" aria-label="返回实践海报库首页">
+        <img class="wordmark-logo" src="./assets/logo.png" alt="" />
+        <span>
+          <strong>满井溯源 · 秦京铸魂</strong>
+          <small>北京科技大学社会实践队</small>
+        </span>
+      </a>
+      <p>实践记录 · 海报资料库</p>
+    </header>
+
+    <div class="library-shell">
+      <div class="heritage-decor" aria-hidden="true">
+        <svg class="heritage-pattern heritage-pattern-top" viewBox="0 0 240 120" focusable="false">
+          <path d="M12 28h216M28 43h184M44 58h152" />
+          <path d="M20 18h20v20H20zm180 0h20v20h-20zM50 48h22v22H50zm118 0h22v22h-22z" />
+          <path d="m20 95 22-20 22 20 22-20 22 20 22-20 22 20 22-20 22 20" />
+        </svg>
+        <svg class="heritage-building" viewBox="0 0 620 650" focusable="false">
+          <g class="building-distant">
+            <path d="M84 274 190 204l106 70v282H84z" />
+            <path d="M58 270h264l-20 25H78z" />
+            <path d="M108 238h164l-13-20H121z" />
+            <path d="M133 207h114l-10-18H143z" />
+            <path d="M121 295h190M121 355h190M121 415h190M121 475h190" />
+            <path d="M145 299v176M178 299v176M212 299v176M246 299v176M280 299v176" />
+          </g>
+          <g class="building-main">
+            <path d="M228 230 442 112l137 92v354H228z" />
+            <path d="m184 219 263-141 163 105-28 29-141-88-224 121z" />
+            <path d="m230 173 216-115 133 84-25 23-109-67-189 101z" />
+            <path d="m267 128 177-94 101 64-22 20-80-49-155 82z" />
+            <path d="M241 236h323M241 298h323M241 361h323M241 423h323M241 487h323" />
+            <path d="M269 240v247M313 240v247M358 240v247M403 240v247M448 240v247M493 240v247M538 240v247" />
+            <path d="M300 487v-66h35v66m49 0v-78h38v78m52 0v-58h36v58" />
+            <path d="M205 551h378l-25 29H230zM171 580h445l-24 26H198z" />
+            <path d="M245 606h296v29H245z" />
+            <path d="M286 635h215" />
+          </g>
+          <svg style="position:absolute; right:10px; bottom:20px; width:320px;height:260px;opacity:0.14;pointer-events:none;z-index:1;" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+  <path d="M40,140 C80,90 140,110 170,70 C210,30 260,60 250,110 C270,140 240,180 190,170 C140,195 70,180 40,140Z" fill="none" stroke="#e8ddc3" stroke-width="1.2"/>
+  <path d="M80,130 C110,100 150,125 180,95" fill="none" stroke="#e8ddc3" stroke-width="1"/>
+  <path d="M130,160 C165,135 200,155 220,130" fill="none" stroke="#e8ddc3" stroke-width="1"/>
+        </svg>
+        <svg style="position:absolute; left:8px; bottom:10px; width:220px;height:180px;opacity:0.12;pointer-events:none;z-index:1;" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20,110 C55,75 100,95 130,65 C160,35 190,65 175,100 C185,125 155,145 115,135 C65,155 35,140 20,110Z" fill="none" stroke="#e8ddc3" stroke-width="1.1"/>
+  <path d="M60,105 C85,82 115,102 140,82" fill="none" stroke="#e8ddc3" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <main class="library-main" id="library-content" tabindex="-1">
+        <header class="content-header">
+          <p class="content-eyebrow">POSTER LIBRARY</p>
+          <div class="title-row">
+            <div>
+              <h1>实践海报库</h1>
+              <p id="category-description">汇集实践过程中的全部视觉记录</p>
+            </div>
+            <div class="result-count" aria-live="polite">
+              <strong id="published-count">0</strong>
+              <span>张已发布</span>
+            </div>
+          </div>
+        </header>
+
+        <section aria-labelledby="current-view-title">
+          <div class="view-heading">
+            <h2 id="current-view-title">全部海报</h2>
+            <span id="loading-state" role="status">正在检查海报…</span>
+          </div>
+          <div class="poster-grid" id="poster-grid" aria-label="海报封面列表"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>USTB</span>
+      <p>北京科技大学 · 满井溯源·秦京铸魂实践队</p>
+      <a href="#top">回到顶部 ↑</a>
+    </footer>
+
+    <dialog class="viewer" id="poster-viewer" aria-labelledby="viewer-title">
+      <div class="viewer-frame">
+        <header class="viewer-header">
+          <div>
+            <span id="viewer-category">实践海报</span>
+            <strong id="viewer-title">海报大图</strong>
+          </div>
+          <button class="viewer-close" id="viewer-close" type="button" aria-label="关闭海报大图">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </header>
+        <div class="viewer-stage">
+          <button class="viewer-nav" id="viewer-previous" type="button" aria-label="查看上一张海报">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <img id="viewer-image" src="" alt="" />
+          <button class="viewer-nav" id="viewer-next" type="button" aria-label="查看下一张海报">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+          </button>
+        </div>
+        <p>左右方向键切换 · Esc 关闭</p>
+      </div>
+    </dialog>
+
+    <noscript><p class="noscript">请启用 JavaScript 以浏览海报资料库。</p></noscript>
+  </body>
+</html>
