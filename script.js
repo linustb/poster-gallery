@@ -1,24 +1,24 @@
 const POSTER_COUNT = 15
-const POSTER_ROOT = 'poster-gallery/assets/posters/batch-01'
+const POSTER_ROOT = '/poster-gallery/assets/posters/batch-01'
 const CLOUD_ASSETS = {
   waves: '/poster-gallery/assets/cloud-waves.png',
   scroll: '/poster-gallery/assets/cloud-scroll.png',
 }
 
 const existingPosters = [
-  { categoryLabel:'热点要闻', src: `${POSTER_ROOT}/culture/热点要闻-01.jpg` },
-  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/热点要闻-02.jpg` },
-  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/热点要闻-03.png` },
-  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/hot-new-04.png` },
-  { categoryLabel: '满井日报', src: `${POSTER_ROOT}/culture/poster-01.jpg` },
-  { categoryLabel: '校史访谈', src: `${POSTER_ROOT}/culture/poster-09.jpg` },
-  { categoryLabel: '校史访谈', src: `${POSTER_ROOT}/culture/poster-10.jpg` },
-  { categoryLabel: '矿业学科', src: `${POSTER_ROOT}/culture/poster-07.png` },
-  { categoryLabel: '矿业学科', src: `${POSTER_ROOT}/culture/poster-08.png` },
-  { categoryLabel: '体育力量', src: `${POSTER_ROOT}/culture/poster-11.jpg` },
-  { categoryLabel: '体育力量', src: `${POSTER_ROOT}/culture/poster-12.jpg` },
-  { categoryLabel: '地脉薪传', src: `${POSTER_ROOT}/culture/poster-04.png` },
-  { categoryLabel: '西迁足迹', src: `${POSTER_ROOT}/culture/西迁.jpg` },
+  { categoryLabel:'热点要闻', src: `${POSTER_ROOT}/热点要闻-01.jpg` },
+  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/热点要闻-02.jpg` },
+  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/热点要闻-03.png` },
+  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/hot-new-04.png` },
+  { categoryLabel: '满井日报', src: `${POSTER_ROOT}/poster-01.jpg` },
+  { categoryLabel: '校史访谈', src: `${POSTER_ROOT}/poster-09.jpg` },
+  { categoryLabel: '校史访谈', src: `${POSTER_ROOT}/poster-10.jpg` },
+  { categoryLabel: '矿业学科', src: `${POSTER_ROOT}/poster-07.png` },
+  { categoryLabel: '矿业学科', src: `${POSTER_ROOT}/poster-08.png` },
+  { categoryLabel: '体育力量', src: `${POSTER_ROOT}/poster-11.jpg` },
+  { categoryLabel: '体育力量', src: `${POSTER_ROOT}/poster-12.jpg` },
+  { categoryLabel: '地脉薪传', src: `${POSTER_ROOT}/poster-04.png` },
+  { categoryLabel: '西迁足迹', src: `${POSTER_ROOT}/西迁.jpg` },
   { categoryLabel: '艺润满井', src: `${POSTER_ROOT}/culture/艺术.png` },
   { categoryLabel: '全部海报', src: "" },
 
