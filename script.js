@@ -1,8 +1,8 @@
 const POSTER_COUNT = 15
-const POSTER_ROOT = './assets/posters/batch-01'
+const POSTER_ROOT = 'poster-gallery/assets/posters/batch-01'
 const CLOUD_ASSETS = {
-  waves: './assets/cloud-waves.png',
-  scroll: './assets/cloud-scroll.png',
+  waves: 'poster-gallery/assets/cloud-waves.png',
+  scroll: 'poster-gallery/assets/cloud-scroll.png',
 }
 
 const existingPosters = [
