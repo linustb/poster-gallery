@@ -25,7 +25,6 @@ const existingPosters = [
 
 ]
 
-const imageAvailability = new Map()
 const posterGrid = document.querySelector('#poster-grid')
 const publishedCount = document.querySelector('#published-count')
 const loadingState = document.querySelector('#loading-state')
@@ -37,6 +36,7 @@ const viewerClose = document.querySelector('#viewer-close')
 const viewerPrevious = document.querySelector('#viewer-previous')
 const viewerNext = document.querySelector('#viewer-next')
 
+// 存真正加载成功的海报，用于弹窗上下翻页
 let visiblePublishedPosters = []
 let activeViewerIndex = -1
 let lastFocusedElement = null
@@ -44,13 +44,10 @@ let lastFocusedElement = null
 function renderRandomClouds() {
   const decor = document.querySelector('.heritage-decor')
   if (!decor) return
-
   const existing = decor.querySelector('.random-cloud-layer')
   if (existing) existing.remove()
-
   const layer = document.createElement('div')
   layer.className = 'random-cloud-layer'
-
   const placements = [
     { type: 'scroll', className: 'cloud-scroll-left', x: -4, y: 18, width: 45, opacity: .12, rotation: -2, flip: 1 },
     { type: 'waves', className: 'cloud-waves-right', x: 84, y: 40, width: 38, opacity: .13, rotation: 0, flip: 1 },
@@ -59,7 +56,6 @@ function renderRandomClouds() {
     { type: 'waves', className: 'cloud-waves-left-middle', x: 2, y: 53, width: 34, opacity: .09, rotation: -1, flip: 1 },
     { type: 'scroll', className: 'cloud-scroll-right-top', x: 96, y: 16, width: 31, opacity: .1, rotation: 2, flip: -1 },
   ]
-
   placements.map((placement) => {
     const image = document.createElement('img')
     image.className = `random-cloud ${placement.className}`
@@ -74,7 +70,6 @@ function renderRandomClouds() {
     image.style.setProperty('--cloud-flip', String(placement.flip))
     return image
   }).forEach((image) => layer.append(image))
-
   decor.append(layer)
 }
 
@@ -86,24 +81,6 @@ function createPosterRecords() {
   }))
 }
 
-function checkImage(src) {
-  if (!src) return Promise.resolve(false)
-  if (imageAvailability.has(src)) return Promise.resolve(imageAvailability.get(src))
-
-  return new Promise((resolve) => {
-    const image = new Image()
-    image.onload = () => {
-      imageAvailability.set(src, true)
-      resolve(true)
-    }
-    image.onerror = () => {
-      imageAvailability.set(src, false)
-      resolve(false)
-    }
-    image.src = src
-  })
-}
-
 function placeholderMarkup(index, categoryLabel) {
   const number = String(index + 1).padStart(2, '0')
   return `
@@ -113,41 +90,50 @@ function placeholderMarkup(index, categoryLabel) {
     <small>${categoryLabel}</small>`
 }
 
-function createPosterCard(poster, index, isPublished) {
+/**
+ * 创建卡片，不再提前探测；图片加载失败onerror切换占位
+ */
+function createPosterCard(poster, globalIndex) {
   const article = document.createElement('article')
-  article.className = isPublished ? 'poster-card is-published' : 'poster-card is-empty'
+  article.className = 'poster-card is-published'
   const displayNumber = String(poster.number).padStart(2, '0')
 
   const button = document.createElement('button')
   button.className = 'poster-cover'
   button.type = 'button'
-  button.disabled = !isPublished
 
-  if (isPublished) {
-    button.setAttribute('aria-label', `查看第 ${displayNumber} 号海报大图`)
-    const image = document.createElement('img')
-    image.src = poster.src
-    image.alt = `第 ${displayNumber} 号海报封面`
-    image.loading = 'lazy'
-    image.decoding = 'async'
-    button.append(image)
-    button.addEventListener('click', () => openViewer(index, button))
-  } else {
-    button.setAttribute('aria-label', `第 ${displayNumber} 号展位，海报待发布`)
+  const image = document.createElement('img')
+  image.src = poster.src
+  image.alt = `第 ${displayNumber} 号海报封面`
+  image.loading = 'lazy'
+  image.decoding = 'async'
+
+  // 关键：图片加载失败，动态变为待发布状态
+  image.onerror = () => {
+    article.className = 'poster-card is-empty'
+    button.disabled = true
+    button.innerHTML = ''
     const placeholder = document.createElement('span')
     placeholder.className = 'poster-placeholder'
     placeholder.innerHTML = placeholderMarkup(poster.number - 1, poster.categoryLabel)
     button.append(placeholder)
+    // 从可用列表移除
+    const idx = visiblePublishedPosters.findIndex(p=>p.number === poster.number)
+    if(idx>-1) visiblePublishedPosters.splice(idx,1)
+    publishedCount.textContent = String(visiblePublishedPosters.length)
   }
+
+  button.append(image)
+  button.addEventListener('click', () => openViewer(visiblePublishedPosters.findIndex(p=>p.number===poster.number), button))
 
   const metadata = document.createElement('div')
   metadata.className = 'poster-meta'
   metadata.innerHTML = `
     <div>
       <h3>${poster.categoryLabel} · ${displayNumber}</h3>
-      <p>${isPublished ? '点击查看完整海报' : 'POSTER COMING SOON'}</p>
+      <p>点击查看完整海报</p>
     </div>
-    <span>${isPublished ? '已发布' : '待发布'}</span>`
+    <span>已发布</span>`
 
   article.append(button, metadata)
   return article
@@ -157,16 +143,35 @@ async function renderPosters() {
   const records = createPosterRecords()
   loadingState.hidden = false
   posterGrid.setAttribute('aria-busy', 'true')
+  visiblePublishedPosters = []
 
-  const availability = await Promise.all(records.map((poster) => checkImage(poster.src)))
-  visiblePublishedPosters = records.filter((_, index) => availability[index])
-
-  let viewerPosition = 0
-  const cards = records.map((poster, index) => {
-    const isPublished = availability[index]
-    const card = createPosterCard(poster, isPublished ? viewerPosition : -1, isPublished)
-    if (isPublished) viewerPosition += 1
-    return card
+  const cards = records.map((poster, index)=>{
+    // src为空，直接渲染待发布
+    if(!poster.src?.trim()){
+      const article = document.createElement('article')
+      article.className = 'poster-card is-empty'
+      const button = document.createElement('button')
+      button.className = 'poster-cover'
+      button.type = 'button'
+      button.disabled = true
+      const placeholder = document.createElement('span')
+      placeholder.className = 'poster-placeholder'
+      placeholder.innerHTML = placeholderMarkup(index, poster.categoryLabel)
+      button.append(placeholder)
+      const metadata = document.createElement('div')
+      metadata.className = 'poster-meta'
+      metadata.innerHTML = `
+      <div>
+        <h3>${poster.categoryLabel} · ${String(poster.number).padStart(2,'0')}</h3>
+        <p>POSTER COMING SOON</p>
+      </div>
+      <span>待发布</span>`
+      article.append(button, metadata)
+      return article
+    }else{
+      visiblePublishedPosters.push(poster)
+      return createPosterCard(poster, index)
+    }
   })
 
   posterGrid.replaceChildren(...cards)
@@ -178,7 +183,6 @@ async function renderPosters() {
 function updateViewer(index) {
   const poster = visiblePublishedPosters[index]
   if (!poster) return
-
   activeViewerIndex = index
   const displayNumber = String(poster.number).padStart(2, '0')
   viewerImage.src = poster.src
@@ -191,7 +195,7 @@ function updateViewer(index) {
 }
 
 function openViewer(index, trigger) {
-  if (!visiblePublishedPosters[index]) return
+  if (index < 0) return
   lastFocusedElement = trigger
   updateViewer(index)
   document.body.classList.add('viewer-open')
@@ -220,12 +224,10 @@ viewerNext.addEventListener('click', () => moveViewer(1))
 viewer.addEventListener('click', (event) => {
   if (event.target === viewer) closeViewer()
 })
-
 viewer.addEventListener('cancel', (event) => {
   event.preventDefault()
   closeViewer()
 })
-
 viewer.addEventListener('close', () => document.body.classList.remove('viewer-open'))
 
 document.addEventListener('keydown', (event) => {
