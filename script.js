@@ -8,7 +8,7 @@ const CLOUD_ASSETS = {
 const existingPosters = [
   { categoryLabel:'热点要闻', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/news-01.jpg` },
   { categoryLabel: '热点要闻', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/news-02.jpg` },
-  { categoryLabel: '热点要闻', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/news-03.png` },
+  { categoryLabel: '热点要闻', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/news-03.jpg` },
   { categoryLabel: '热点要闻', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/hot-new-04.png` },
   { categoryLabel: '满井日报', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/poster-01.jpg` },
   { categoryLabel: '校史访谈', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/poster-09.jpg` },
@@ -19,7 +19,7 @@ const existingPosters = [
   { categoryLabel: '体育力量', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/poster-12.jpg` },
   { categoryLabel: '地脉薪传', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/poster-04.png` },
   { categoryLabel: '西迁足迹', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/west.jpg` },
-  { categoryLabel: '艺润满井', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/art.png` },
+  { categoryLabel: '艺润满井', src: `https://cdn.jsdmirror.com/gh/linustb/poster-gallery@main/assets/posters/batch-01/culture/art.jpg` },
   { categoryLabel: '全部海报', src: "" },
 
 
