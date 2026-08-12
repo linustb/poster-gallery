@@ -6,9 +6,9 @@ const CLOUD_ASSETS = {
 }
 
 const existingPosters = [
-  { categoryLabel:'热点要闻', src: `${POSTER_ROOT}/culture/热点要闻-01.jpg` },
-  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/热点要闻-02.jpg` },
-  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/热点要闻-03.png` },
+  { categoryLabel:'热点要闻', src: `${POSTER_ROOT}/culture/news-01.jpg` },
+  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/news-02.jpg` },
+  { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/news-03.png` },
   { categoryLabel: '热点要闻', src: `${POSTER_ROOT}/culture/hot-new-04.png` },
   { categoryLabel: '满井日报', src: `${POSTER_ROOT}/culture/poster-01.jpg` },
   { categoryLabel: '校史访谈', src: `${POSTER_ROOT}/culture/poster-09.jpg` },
@@ -18,8 +18,8 @@ const existingPosters = [
   { categoryLabel: '体育力量', src: `${POSTER_ROOT}/culture/poster-11.jpg` },
   { categoryLabel: '体育力量', src: `${POSTER_ROOT}/culture/poster-12.jpg` },
   { categoryLabel: '地脉薪传', src: `${POSTER_ROOT}/culture/poster-04.png` },
-  { categoryLabel: '西迁足迹', src: `${POSTER_ROOT}/culture/西迁.jpg` },
-  { categoryLabel: '艺润满井', src: `${POSTER_ROOT}/culture/艺术.png` },
+  { categoryLabel: '西迁足迹', src: `${POSTER_ROOT}/culture/west.jpg` },
+  { categoryLabel: '艺润满井', src: `${POSTER_ROOT}/culture/art.png` },
   { categoryLabel: '全部海报', src: "" },
 
 
